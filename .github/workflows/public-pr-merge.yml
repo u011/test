@@ -1,0 +1,12 @@
+name: "Workflow Lib - Merge PR"
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+  pr-merge-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Perform tasks after PR merge
+        run: echo "Executing tasks triggered by a Pull Request merge."

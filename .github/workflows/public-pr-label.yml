@@ -1,0 +1,32 @@
+name: "Workflow Lib - Label PR"
+
+on:
+  workflow_call:
+    inputs:
+      event_label:
+        type: string
+        description: "Name of the newly added label"
+        required: true
+  workflow_dispatch:
+    inputs:
+      event_label:
+        type: string
+        description: "Name of the newly added label"
+        required: true
+        default: "verify"
+
+jobs:
+  label-main-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "PR Label: ${{ inputs.event_label }}"
+        run: |
+          echo "Handling label: ${{ inputs.event_label }}"
+
+  label-conditional-job:
+    if: ${{ inputs.event_label == 'verify' || inputs.event_label == 'publish' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Conditional tasks for 'verify' or 'publish'"
+        run: |
+          echo "Executing label-specific tasks for: ${{ inputs.event_label }}"

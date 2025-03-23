@@ -1,0 +1,12 @@
+name: "Workflow Lib - Update PR"
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+  pr-all-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Perform tasks for opened, reopened, or synchronized Pull Requests
+        run: echo "Executing tasks for opened, reopened, or synchronized Pull Requests."
