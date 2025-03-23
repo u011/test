@@ -1,0 +1,37 @@
+name: Reusable Action
+# This workflow is designed to be reused by other workflows
+
+on:
+  workflow_call:
+    inputs:
+      branch:
+        description: "The branch to work with"
+        required: false
+        type: string
+        default: "main"
+      repository:
+        description: "The repository to work with"
+        required: false
+        type: string
+        default: ${{ github.repository }}
+      custom_message:
+        description: "A custom message to display"
+        required: false
+        type: string
+        default: "Running reusable action"
+
+jobs:
+  reusable-job:
+    name: Reusable Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Echo Parameters
+        run: |
+          echo "🚀 Running reusable action"
+          echo "Branch: ${{ inputs.branch }}"
+          echo "Repository: ${{ inputs.repository }}"
+          echo "Custom Message: ${{ inputs.custom_message }}"
+          echo "Running in context of: ${{ github.workflow }}"

@@ -1,0 +1,17 @@
+name: GitHub Actions Lint
+description: Validates GitHub Actions workflow files for best practices and syntax
+
+runs:
+  using: "composite"
+  steps:
+    - name: Run actionlint
+      shell: bash
+      run: |
+        echo "🔍 Starting GitHub Actions lint..."
+        # Download and install actionlint
+        bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+        
+        echo "Checking workflow files..."
+        ./actionlint -color
+        
+        echo "✅ GitHub Actions lint completed!" 
